@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineapple.domain.order_payment.repository.OrdersMapper">
+
+    <resultMap id="ordersResultMap" type="Orders">
+        <id column="order_id" property="orderId"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="order_code" property="orderCode"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="discount_price" property="discountPrice"/>
+        <result column="is_cancelled" property="isCancelled"/>
+        <result column="delivery_id" property="deliveryId"/>
+        <result column="guest_id" property="guestId"/>
+        <result column="user_id" property="userId"/>
+        <result column="order_status" property="orderStatus"/>
+        <result column="payment_method" property="paymentMethod"/>
+    </resultMap>
+
+
+    <select id="selectOrderById" resultMap="ordersResultMap">
+        SELECT * FROM Orders WHERE order_id = #{orderId}
+    </select>
+
+    <insert id="insertOrder" parameterType="Orders">
+        INSERT INTO Orders (created_at, updated_at, order_code, total_price, discount_price, is_cancelled, delivery_id, guest_id, user_id, order_status, payment_method)
+        VALUES ( #{createdAt}, #{updatedAt}, #{orderCode}, #{totalPrice}, #{discountPrice}, #{isCancelled}, #{deliveryId}, #{guestId}, #{userId}, #{orderStatus}, #{paymentMethod})
+        <selectKey keyProperty="id" order="AFTER" resultType="long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="updateOrder" parameterType="Orders">
+        UPDATE orders
+        SET
+            user_id = #{userId},
+            order_status = #{orderStatus}
+        WHERE id = #{id}
+    </update>
+
+
+</mapper>

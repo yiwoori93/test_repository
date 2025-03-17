@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineapple.domain.user.repository.CartMapper">
+
+<resultMap id="cartItemResultMap" type="CartItem">
+        <id column="cart_item_id" property="cartItemId"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="quantity" property="quantity"/>
+        <result column="item_id" property="itemId"/>
+        <result column="user_id" property="userId"/>
+    </resultMap>
+
+    <delete id="deleteCartByUserId" parameterType="long">
+        DELETE FROM cart_item
+        WHERE user_id = #{userId}
+    </delete>
+
+</mapper>

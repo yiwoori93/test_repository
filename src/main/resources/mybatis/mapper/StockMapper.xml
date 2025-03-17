@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineapple.domain.logistics_inventory.repository.StockMapper">
+
+    <resultMap id="stockResultMap" type="Stock">
+        <id column="stock_id" property="stockId"/>
+        <result column="stock" property="stock"/>
+        <result column="product_id" property="productId"/>
+    </resultMap>
+
+    <select id="selectStockByProductId" parameterType="long" resultType="int">
+        SELECT stock
+        FROM stock
+        WHERE product_id = #{productId}
+    </select>
+
+    <!-- 동시성 추가예정 -->
+    <update id="decreaseStock">
+        UPDATE stock
+        SET stock = stock - #{quantity}
+        WHERE product_id = #{productId}
+    </update>
+
+</mapper>

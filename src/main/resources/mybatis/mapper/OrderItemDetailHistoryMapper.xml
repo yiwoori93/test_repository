@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineapple.domain.order_payment.repository.OrderItemDetailHistoryMapper">
+
+    <resultMap id="orderItemDetailHistoryResultMap" type="OrderItemDetailHistory">
+        <id column="history_id" property="historyId"/>
+        <result column="old_price" property="oldPrice"/>
+        <result column="new_price" property="newPrice"/>
+        <result column="old_quantity" property="oldQuantity"/>
+        <result column="new_quantity" property="newQuantity"/>
+        <result column="change_reason" property="changeReason"/>
+        <result column="changed_at" property="changedAt"/>
+        <result column="changed_by" property="changedBy"/>
+        <result column="orderitemdetail_id" property="orderItemDetailId"/>
+        <result column="item_history_status" property="itemHistoryStatus"/>
+    </resultMap>
+
+
+
+</mapper>
